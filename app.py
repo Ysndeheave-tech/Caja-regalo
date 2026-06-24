@@ -2,40 +2,36 @@ import streamlit as st
 import random
 from PIL import Image
 
-# --- 1. CONFIGURACIÓN ---
-st.set_page_config(page_title="Para mi amiguita", page_icon="💖")
-
+# --- CONFIGURACIÓN ESTÉTICA ---
+st.set_page_config(page_title="Nuestros Recuerdos", page_icon="💖")
 st.markdown("""
     <style>
     .stApp { background-color: #FCE4EC; }
     h1 { color: #880E4F; text-align: center; }
-    .stButton>button {
-        background-color: #E91E63;
-        color: white;
-        border-radius: 20px;
-        padding: 10px 24px;
-        font-size: 18px;
-        margin: auto;
-        display: block;
-    }
+    .stButton>button { background-color: #E91E63; color: white; border-radius: 20px; width: 100%; }
     </style>
     """, unsafe_allow_html=True)
 
-# --- 2. CONTENIDO ---
-st.title("💖 Cajita de Sorpresas")
+st.title("💖 Nuestra Cajita de Recuerdos")
 
-# AQUÍ CAMBIA EL NOMBRE DEL ARCHIVO SI ES DIFERENTE
-try:
-    img = Image.open("mi_foto.jpg") 
-    st.image(img, use_container_width=True)
-except:
-    st.warning("¡Sube tu foto a GitHub con el nombre 'mi_foto.jpg' para que se vea!")
+# --- MÚSICA (Fija en la parte superior) ---
+st.video("https://youtu.be/G-H7OS_Mrc8?si=9RKpL") 
 
 st.write("---")
-st.markdown("<p style='text-align: center;'>Presiona el botón para recibir algo especial hoy:</p>", unsafe_allow_html=True)
 
-# --- 3. BOTÓN ---
-if st.button("¡Haz clic aquí!"):
+# --- GALERÍA DE FOTOS (Usando columnas para que se vean lindas) ---
+col1, col2 = st.columns(2)
+with col1:
+    st.image(Image.open("foto1.jpg"), use_container_width=True)
+    st.image(Image.open("foto3.jpg"), use_container_width=True)
+with col2:
+    st.image(Image.open("foto2.jpg"), use_container_width=True)
+    st.image(Image.open("foto4.jpg"), use_container_width=True)
+
+st.write("---")
+
+# --- SORPRESA FINAL ---
+if st.button("¡Un mensajito para ti!"):
     mensajes = [
         "¡Eres una persona increíble!",
     "Tu sonrisa alegra el día de cualquiera.",
@@ -56,13 +52,7 @@ if st.button("¡Haz clic aquí!"):
     "Conocerte es de las mejores cosas que me pasaron",
     "Sos mi persona favorita"
     "Te mereces solo lo mejor",
-    "Eres de lo más importante que tengo",
-    ]
+    "Eres de lo más importante que tengo"
+               ]
     st.balloons()
     st.success(random.choice(mensajes))
-
-# --- 4. MÚSICA ---
-st.write("---")
-st.markdown("<h3 style='text-align: center;'>Nuestra canción 🎵</h3>", unsafe_allow_html=True)
-# AQUÍ CAMBIA EL LINK POR TU CANCIÓN
-st.video("https://youtu.be/G-H7OS_Mrc8?si=9RKpLNFGuWLU-RqA")
