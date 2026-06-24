@@ -1,7 +1,8 @@
 import streamlit as st
 import random
+from PIL import Image
 
-# --- 1. CONFIGURACIÓN Y ESTILO ---
+# --- 1. CONFIGURACIÓN ---
 st.set_page_config(page_title="Para mi amiguita", page_icon="💖")
 
 st.markdown("""
@@ -14,24 +15,29 @@ st.markdown("""
         border-radius: 20px;
         padding: 10px 24px;
         font-size: 18px;
+        margin: auto;
+        display: block;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# --- 2. CONTENIDO CENTRADO ---
+# --- 2. CONTENIDO ---
 st.title("💖 Cajita de Sorpresas")
-st.write("---") # Línea divisoria para que no se vea vacío
+
+# AQUÍ CAMBIA EL NOMBRE DEL ARCHIVO SI ES DIFERENTE
+try:
+    img = Image.open("mi_foto.jpg") 
+    st.image(img, use_container_width=True)
+except:
+    st.warning("¡Sube tu foto a GitHub con el nombre 'mi_foto.jpg' para que se vea!")
+
+st.write("---")
 st.markdown("<p style='text-align: center;'>Presiona el botón para recibir algo especial hoy:</p>", unsafe_allow_html=True)
 
-# --- 3. BOTÓN CENTRADO (usando columnas) ---
-col1, col2, col3 = st.columns([1, 1, 1])
-with col2:
-    btn = st.button("¡Haz clic aquí!")
-
-# --- 4. LÓGICA ---
-if btn:
+# --- 3. BOTÓN ---
+if st.button("¡Haz clic aquí!"):
     mensajes = [
-         "¡Eres una persona increíble!",
+        "¡Eres una persona increíble!",
     "Tu sonrisa alegra el día de cualquiera.",
     "Gracias por ser mi amiga.",
     "Eres única, nunca lo olvides.",
@@ -54,3 +60,9 @@ if btn:
     ]
     st.balloons()
     st.success(random.choice(mensajes))
+
+# --- 4. MÚSICA ---
+st.write("---")
+st.markdown("<h3 style='text-align: center;'>Nuestra canción 🎵</h3>", unsafe_allow_html=True)
+# AQUÍ CAMBIA EL LINK POR TU CANCIÓN
+st.video("TU_LINK_DE_YOUTUBE_AQUI")
