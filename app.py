@@ -8,30 +8,33 @@ st.markdown("""
     <style>
     .stApp { background-color: #FCE4EC; }
     h1 { color: #880E4F; text-align: center; }
-    .stButton>button { background-color: #E91E63; color: white; border-radius: 20px; width: 100%; }
+    .stButton>button { background-color: #E91E63; color: white; border-radius: 20px; width: 100%; font-weight: bold; }
     </style>
     """, unsafe_allow_html=True)
 
 st.title("💖 Nuestra Cajita de Recuerdos")
 
-# --- MÚSICA (Fija en la parte superior) ---
+# --- MÚSICA ---
+# Cambia el link de abajo por el de tu canción favorita en YouTube
 st.video("https://youtu.be/G-H7OS_Mrc8?si=9RKpL") 
 
 st.write("---")
 
-# --- GALERÍA DE FOTOS (Usando columnas para que se vean lindas) ---
-col1, col2 = st.columns(2)
+# --- GALERÍA DE 3 FOTOS ---
+# Dividimos la pantalla en 3 columnas iguales
+col1, col2, col3 = st.columns(3)
+
 with col1:
-    st.image(Image.open("foto1.jpg"), use_container_width=True)
-    st.image(Image.open("foto3.jpg"), use_container_width=True)
+    st.image(Image.open("Picture.jpg"), use_container_width=True)
 with col2:
-    st.image(Image.open("foto2.jpg"), use_container_width=True)
-    st.image(Image.open("foto4.jpg"), use_container_width=True)
+    st.image(Image.open("Picture2.jpg"), use_container_width=True)
+with col3:
+    st.image(Image.open("Picture3.jpg"), use_container_width=True)
 
 st.write("---")
 
-# --- SORPRESA FINAL ---
-if st.button("¡Un mensajito para ti!"):
+# --- MENSAJE SORPRESA ---
+if st.button("¡Presiona para una sorpresa!"):
     mensajes = [
         "¡Eres una persona increíble!",
     "Tu sonrisa alegra el día de cualquiera.",
@@ -53,6 +56,6 @@ if st.button("¡Un mensajito para ti!"):
     "Sos mi persona favorita"
     "Te mereces solo lo mejor",
     "Eres de lo más importante que tengo"
-               ]
+    ]
     st.balloons()
     st.success(random.choice(mensajes))
