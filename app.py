@@ -25,7 +25,7 @@ st.write("---")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.image(Image.open("Picture.jpg"), use_container_width=True)
+    st.image(Image.open("Picture1.jpg"), use_container_width=True)
 with col2:
     st.image(Image.open("Picture2.jpg"), use_container_width=True)
 with col3:
