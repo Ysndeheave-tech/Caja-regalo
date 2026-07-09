@@ -2,56 +2,74 @@ import streamlit as st
 import random
 from PIL import Image
 
-# --- CONFIGURACIÓN ESTÉTICA ---
-st.set_page_config(page_title="Nuestros Recuerdos", page_icon="💖")
+# --- CONFIGURACIÓN ESTÉTICA MAXIMALISTA ---
+st.set_page_config(page_title="Nuestra Vibra Lila", page_icon="💜")
+
 st.markdown("""
     <style>
-    /* Degradado suave para evitar el diseño plano */
+    /* Fondo vibrante lila */
     .stApp { 
-        background: linear-gradient(135deg, #FCE4EC 0%, #FFFFFF 100%); 
+        background: radial-gradient(circle, #E1BEE7 0%, #7B1FA2 100%); 
     }
-    h1 { color: #880E4F; text-align: center; font-family: 'Georgia', serif; }
     
-    /* Botón con estilo moderno */
+    /* Tarjetas con bordes súper redondeados y sombras pesadas */
+    .css-1r6slb0, .stMarkdown { 
+        background-color: rgba(255, 255, 255, 0.9); 
+        padding: 30px; 
+        border-radius: 40px; 
+        border: 4px solid #4A148C;
+        box-shadow: 15px 15px 0px #4A148C;
+        margin-bottom: 20px;
+    }
+    
+    h1 { 
+        color: #4A148C; 
+        text-align: center; 
+        font-family: 'Impact', sans-serif; 
+        font-size: 3.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    
+    /* Botón maximalista */
     .stButton>button { 
-        background-color: #E91E63; 
+        background-color: #FF00FF; 
         color: white; 
         border-radius: 50px; 
-        padding: 10px 25px; 
-        font-weight: bold;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: 0.3s;
+        width: 100%; 
+        padding: 20px; 
+        font-size: 24px; 
+        border: 4px solid #000;
+        box-shadow: 8px 8px 0px #000;
+        font-weight: 900;
     }
-    .stButton>button:hover { transform: scale(1.05); }
+    .stButton>button:hover { background-color: #CC00CC; transform: translate(-2px, -2px); }
     </style>
     """, unsafe_allow_html=True)
 
-st.title("💖 Nuestra Cajita de Recuerdos")
+# --- CONTENIDO ---
+st.title("✨ CAJITA DE PODER ✨")
 
-# --- MÚSICA ---
-# Usamos un contenedor para centrar el video
-c_video1, c_video2, c_video3 = st.columns([1, 4, 1])
-with c_video2:
-    st.video("https://youtu.be/G-H7OS_Mrc8?si=9RKpL") 
+# MÚSICA CON MARCO
+st.video("https://youtu.be/G-H7OS_Mrc8?si=9RKpL")
 
-st.write("---")
+st.markdown("<br>", unsafe_allow_html=True)
 
-# --- GALERÍA DE 3 FOTOS ---
+# --- GALERÍA ESTILO POLAROID ---
 col1, col2, col3 = st.columns(3)
 try:
     with col1: st.image(Image.open("Picture1.jpg"), use_container_width=True)
     with col2: st.image(Image.open("Picture2.jpg"), use_container_width=True)
     with col3: st.image(Image.open("Picture3.jpg"), use_container_width=True)
 except:
-    st.error("Revisa que Picture1.jpg, Picture2.jpg y Picture3.jpg estén en la raíz de tu GitHub.")
+    st.error("¡Recuerda revisar que las fotos estén en la carpeta principal!")
 
-st.write("---")
+st.markdown("<br>", unsafe_allow_html=True)
 
-# --- MENSAJE SORPRESA (Botón Centrado) ---
-# Creamos 5 columnas para que el botón en la 3ra quede perfecto
-_, c_boton, _ = st.columns([2, 1, 2])
+# --- BOTÓN ---
+_, c_boton, _ = st.columns([1, 2, 1])
 with c_boton:
-    btn = st.button("¡Presiona para una sorpresa!")
+    btn = st.button("¡PRESIONA Y BRILLA!")
 
 if btn:
     mensajes = [
