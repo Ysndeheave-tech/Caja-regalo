@@ -7,7 +7,6 @@ st.set_page_config(page_title="Cajita Rockstar", page_icon="⚡")
 
 st.markdown("""
     <style>
-    /* Fondo oscuro con puntos color morado neón (#FF00FF) */
     .stApp { 
         background-color: #0A0A0A !important;
         background-image: radial-gradient(#FF00FF 1px, transparent 1px);
@@ -15,7 +14,7 @@ st.markdown("""
     }
     
     /* Eliminar fondos y bordes de contenedores */
-    .stMarkdown, .stVideo, .stImage {
+    .stMarkdown, .stVideo, .stImage, .stButton {
         background-color: transparent !important;
         border: none !important;
     }
@@ -27,7 +26,13 @@ st.markdown("""
         text-shadow: 4px 4px #FF00FF;
     }
     
-    /* Estilo del botón */
+    /* Botón centrado */
+    .stButton {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
     button {
         background-color: #FF00FF !important;
         color: #000 !important;
@@ -37,6 +42,16 @@ st.markdown("""
         font-weight: 900 !important;
         text-transform: uppercase !important;
         cursor: crosshair !important;
+    }
+    
+    /* Estilo para el mensaje centrado y sin caja */
+    .mensaje-centrado {
+        text-align: center;
+        color: #FF00FF;
+        font-size: 28px;
+        font-weight: bold;
+        font-family: 'Impact', sans-serif;
+        margin-top: 20px;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -55,10 +70,13 @@ try:
 except:
     pass
 
-# --- BOTÓN CENTRADO FORZADO ---
-# Usamos una columna vacía a la izquierda para empujar el botón al centro
-_, c2, _ = st.columns([1, 2, 1])
-with c2:
+# --- BOTÓN Y MENSAJE ---
+if 'mensaje_final' not in st.session_state:
+    st.session_state.mensaje_final = ""
+
+# Usamos un contenedor para centrar
+_, c_boton, _ = st.columns([1, 2, 1])
+with c_boton:
     if st.button("¡PRESIONA Y RECLAMA!"):
         mensajes = [
             "¡Eres una persona increíble!", "Tu sonrisa alegra el día de cualquiera.",
@@ -72,4 +90,8 @@ with c2:
             "Sos mi persona favorita", "Te mereces solo lo mejor",
             "Eres de lo más importante que tengo"
         ]
-        st.success(random.choice(mensajes))
+        st.session_state.mensaje_final = random.choice(mensajes)
+
+# Mostrar el mensaje sin caja y centrado
+if st.session_state.mensaje_final:
+    st.markdown(f"<div class='mensaje-centrado'>{st.session_state.mensaje_final}</div>", unsafe_allow_html=True)
