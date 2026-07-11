@@ -7,10 +7,10 @@ st.set_page_config(page_title="Cajita Rockstar", page_icon="⚡")
 
 st.markdown("""
     <style>
-    /* Fondo con puntos */
+    /* Fondo oscuro con puntos color morado neón (#FF00FF) */
     .stApp { 
         background-color: #0A0A0A !important;
-        background-image: radial-gradient(#222 1px, transparent 1px);
+        background-image: radial-gradient(#FF00FF 1px, transparent 1px);
         background-size: 30px 30px;
     }
     
@@ -27,12 +27,7 @@ st.markdown("""
         text-shadow: 4px 4px #FF00FF;
     }
     
-    /* Botón Rockstar centrado con columnas */
-    .stButton {
-        display: flex;
-        justify-content: center;
-    }
-    
+    /* Estilo del botón */
     button {
         background-color: #FF00FF !important;
         color: #000 !important;
@@ -51,6 +46,7 @@ st.title("⚡ CAJITA DE PODER ⚡")
 
 st.video("https://youtu.be/G-H7OS_Mrc8?si=9RKpL")
 
+# GALERÍA
 col1, col2, col3 = st.columns(3)
 try:
     with col1: st.image(Image.open("Picture1.jpg"), use_container_width=True)
@@ -60,7 +56,7 @@ except:
     pass
 
 # --- BOTÓN CENTRADO FORZADO ---
-# Usamos columnas vacías a los lados para asegurar el centro exacto
+# Usamos una columna vacía a la izquierda para empujar el botón al centro
 _, c2, _ = st.columns([1, 2, 1])
 with c2:
     if st.button("¡PRESIONA Y RECLAMA!"):
