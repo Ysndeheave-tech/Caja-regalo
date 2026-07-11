@@ -2,22 +2,17 @@ import streamlit as st
 import random
 from PIL import Image
 
-# --- CONFIGURACIÓN ESTÉTICA ---
-st.set_config(page_title="Cajita Rockstar", page_icon="⚡")
+# --- CONFIGURACIÓN CORRECTA ---
+st.set_page_config(page_title="Cajita Rockstar", page_icon="⚡")
 
 st.markdown("""
     <style>
-    /* Fondo oscuro con textura sutil */
-    .stApp { 
-        background-color: #0A0A0A !important;
-        background-image: radial-gradient(#222 1px, transparent 1px);
-        background-size: 30px 30px;
-    }
+    /* Fondo oscuro */
+    .stApp { background-color: #0A0A0A !important; }
     
-    /* Eliminar cualquier fondo o borde de contenedores */
-    div[data-testid="stVerticalBlock"] > div {
+    /* Eliminar fondos automáticos y bordes */
+    div[data-testid="stVerticalBlock"] {
         background-color: transparent !important;
-        border: none !important;
     }
     
     h1 { 
@@ -25,14 +20,12 @@ st.markdown("""
         font-family: 'Impact', sans-serif; 
         text-align: center;
         text-shadow: 4px 4px #FF00FF;
-        margin-top: 20px;
     }
     
     /* Centrado absoluto del botón */
-    .stButton {
+    div.stButton {
         display: flex;
         justify-content: center;
-        margin-top: 30px;
     }
     
     button {
@@ -48,11 +41,11 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# --- CABECERA Y VIDEO ---
+# --- CONTENIDO ---
 st.title("⚡ CAJITA DE PODER ⚡")
+
 st.video("https://youtu.be/G-H7OS_Mrc8?si=9RKpL")
 
-# --- GALERÍA ---
 col1, col2, col3 = st.columns(3)
 try:
     with col1: st.image(Image.open("Picture1.jpg"), use_container_width=True)
@@ -75,4 +68,5 @@ if st.button("¡PRESIONA Y RECLAMA!"):
         "Sos mi persona favorita", "Te mereces solo lo mejor",
         "Eres de lo más importante que tengo"
     ]
+    st.success(random.choice(mensajes))
     st.success(random.choice(mensajes))
