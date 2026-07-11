@@ -2,17 +2,22 @@ import streamlit as st
 import random
 from PIL import Image
 
-# --- CONFIGURACIÓN CORRECTA ---
+# --- CONFIGURACIÓN ESTÉTICA ---
 st.set_page_config(page_title="Cajita Rockstar", page_icon="⚡")
 
 st.markdown("""
     <style>
-    /* Fondo oscuro */
-    .stApp { background-color: #0A0A0A !important; }
+    /* Fondo con puntos */
+    .stApp { 
+        background-color: #0A0A0A !important;
+        background-image: radial-gradient(#222 1px, transparent 1px);
+        background-size: 30px 30px;
+    }
     
-    /* Eliminar fondos automáticos y bordes */
-    div[data-testid="stVerticalBlock"] {
+    /* Eliminar fondos y bordes de contenedores */
+    .stMarkdown, .stVideo, .stImage {
         background-color: transparent !important;
+        border: none !important;
     }
     
     h1 { 
@@ -22,8 +27,8 @@ st.markdown("""
         text-shadow: 4px 4px #FF00FF;
     }
     
-    /* Centrado absoluto del botón */
-    div.stButton {
+    /* Botón Rockstar centrado con columnas */
+    .stButton {
         display: flex;
         justify-content: center;
     }
@@ -54,19 +59,21 @@ try:
 except:
     pass
 
-# --- BOTÓN CENTRADO ---
-if st.button("¡PRESIONA Y RECLAMA!"):
-    mensajes = [
-        "¡Eres una persona increíble!", "Tu sonrisa alegra el día de cualquiera.",
-        "Gracias por ser mi amiga.", "Eres única, nunca lo olvides.",
-        "No te rindas, los hombres tienen que seguir pelandotela", "Te amo mi loca",
-        "Por vos me hago lesbiana", "Estoy siempre para vos",
-        "Sos el amor de mi vida", "Te extraño todos los días",
-        "No hay nada que una lloradita juntas no arregle", "Gracias por existir",
-        "Sos mi otra mitad", "Te quiero mucho", "Sos la salsa de mis tacos",
-        "Amo compartir neurona contigo", "Conocerte es de las mejores cosas que me pasaron",
-        "Sos mi persona favorita", "Te mereces solo lo mejor",
-        "Eres de lo más importante que tengo"
-    ]
-    st.success(random.choice(mensajes))
-    st.success(random.choice(mensajes))
+# --- BOTÓN CENTRADO FORZADO ---
+# Usamos columnas vacías a los lados para asegurar el centro exacto
+_, c2, _ = st.columns([1, 2, 1])
+with c2:
+    if st.button("¡PRESIONA Y RECLAMA!"):
+        mensajes = [
+            "¡Eres una persona increíble!", "Tu sonrisa alegra el día de cualquiera.",
+            "Gracias por ser mi amiga.", "Eres única, nunca lo olvides.",
+            "No te rindas, los hombres tienen que seguir pelandotela", "Te amo mi loca",
+            "Por vos me hago lesbiana", "Estoy siempre para vos",
+            "Sos el amor de mi vida", "Te extraño todos los días",
+            "No hay nada que una lloradita juntas no arregle", "Gracias por existir",
+            "Sos mi otra mitad", "Te quiero mucho", "Sos la salsa de mis tacos",
+            "Amo compartir neurona contigo", "Conocerte es de las mejores cosas que me pasaron",
+            "Sos mi persona favorita", "Te mereces solo lo mejor",
+            "Eres de lo más importante que tengo"
+        ]
+        st.success(random.choice(mensajes))
