@@ -3,45 +3,52 @@ import random
 from PIL import Image
 
 # --- CONFIGURACIÓN ESTÉTICA ---
-st.set_page_config(page_title="Cajita Rockstar", page_icon="⚡")
+st.set_config(page_title="Cajita Rockstar", page_icon="⚡")
 
 st.markdown("""
     <style>
-    /* Fondo oscuro */
-    .stApp { background-color: #0A0A0A; }
+    /* Fondo oscuro con textura sutil */
+    .stApp { 
+        background-color: #0A0A0A !important;
+        background-image: radial-gradient(#222 1px, transparent 1px);
+        background-size: 30px 30px;
+    }
     
-    /* Eliminar bordes y fondos de los contenedores automáticos */
-    .stMarkdown, .stButton, .stVideo, .stImage {
+    /* Eliminar cualquier fondo o borde de contenedores */
+    div[data-testid="stVerticalBlock"] > div {
         background-color: transparent !important;
         border: none !important;
-        padding: 0 !important;
     }
     
     h1 { 
-        color: #FFFFFF; 
+        color: #FFFFFF !important; 
         font-family: 'Impact', sans-serif; 
-        text-transform: uppercase;
         text-align: center;
         text-shadow: 4px 4px #FF00FF;
         margin-top: 20px;
     }
     
-    /* Botón Rockstar Centrado */
-    div.stButton > button {
-        background-color: #FF00FF;
-        color: #000;
-        border: 4px solid #FFF;
-        padding: 20px 40px;
-        font-size: 24px;
-        font-weight: 900;
-        text-transform: uppercase;
-        display: block;
-        margin: 0 auto; /* Esto centra el botón */
+    /* Centrado absoluto del botón */
+    .stButton {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+    
+    button {
+        background-color: #FF00FF !important;
+        color: #000 !important;
+        border: 4px solid #FFF !important;
+        padding: 20px 40px !important;
+        font-size: 24px !important;
+        font-weight: 900 !important;
+        text-transform: uppercase !important;
+        cursor: crosshair !important;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# --- TÍTULO Y VIDEO ---
+# --- CABECERA Y VIDEO ---
 st.title("⚡ CAJITA DE PODER ⚡")
 st.video("https://youtu.be/G-H7OS_Mrc8?si=9RKpL")
 
@@ -54,8 +61,7 @@ try:
 except:
     pass
 
-# --- BOTÓN ---
-st.markdown("<br><br>", unsafe_allow_html=True)
+# --- BOTÓN CENTRADO ---
 if st.button("¡PRESIONA Y RECLAMA!"):
     mensajes = [
         "¡Eres una persona increíble!", "Tu sonrisa alegra el día de cualquiera.",
